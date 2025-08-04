@@ -22,7 +22,16 @@ class StoreJobOpeningRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ti'
+            'title' => ['required', 'string'],
+            'company' => ['required', 'string'],
+            'company_logo' => ['sometimes', 'string'],
+            'location' => ['required', 'string'],
+            'category' => ['required', 'string'],
+            'salary' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'benefits' => ['sometimes', 'string'],
+            'type' => ['required', 'string'],
+            'work_condition' => ['required', 'string'],
         ];
     }
 }
