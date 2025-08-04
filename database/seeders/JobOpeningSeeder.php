@@ -15,6 +15,7 @@ class JobOpeningSeeder extends Seeder
     {
         $jobs = [
             [
+                'user_id' => 1,
                 'title' => 'Frontend Developer Needed',
                 'company' => 'Hello Inc.',
                 'company_logo' => null,
@@ -27,6 +28,7 @@ class JobOpeningSeeder extends Seeder
                 'work_condition' => 'Remote',
             ],
             [
+                'user_id' => 1,
                 'title' => 'Backend Laravel Developer',
                 'company' => 'Softworks Ltd.',
                 'company_logo' => null,
@@ -39,6 +41,7 @@ class JobOpeningSeeder extends Seeder
                 'work_condition' => 'Remote',
             ],
             [
+                'user_id' => 1,
                 'title' => 'Product Designer',
                 'company' => 'DesignPro',
                 'company_logo' => null,

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('job_openings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->string('company');
             $table->string('company_logo')->nullable();
