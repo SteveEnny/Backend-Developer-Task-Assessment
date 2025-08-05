@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreJobOpeningRequest extends FormRequest
+class StoreJobRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreJobOpeningRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'company' => ['required', 'string'],
-            'company_logo' => ['sometimes', 'string'],
+            'company_logo' => ['sometimes', 'image'],
             'location' => ['required', 'string'],
             'category' => ['required', 'string'],
             'salary' => ['required', 'string'],
