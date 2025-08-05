@@ -14,15 +14,15 @@ class JobOpeningPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, JobOpening $jobOpening): bool
+    public function view(User $user, JobOpening $jobOpening): Response
     {
-        return false;
+        return $user->id === $jobOpening->user_id ? Response::allow() : Response::deny("You are not authorizes to view this resource");
     }
 
     /**
@@ -38,7 +38,7 @@ class JobOpeningPolicy
      */
     public function update(User $user, JobOpening $jobOpening): bool
     {
-        return false;
+        return $user->id === $jobOpening->user_id;
     }
 
     /**
@@ -46,22 +46,7 @@ class JobOpeningPolicy
      */
     public function delete(User $user, JobOpening $jobOpening): bool
     {
-        return false;
+        return $user->id === $jobOpening->user_id;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, JobOpening $jobOpening): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, JobOpening $jobOpening): bool
-    {
-        return false;
-    }
 }
