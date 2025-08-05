@@ -21,9 +21,11 @@ class JobOpeningController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return JobResource::collection(JobOpening::paginate());
+        $keyword = $request->query('title');
+        $jobs = JobOpening::query()->filter($keyword)->paginate();
+        return JobResource::collection($jobs);
     }
 
     /**
