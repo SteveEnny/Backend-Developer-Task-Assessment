@@ -23,7 +23,7 @@ A RESTful API for a Micro Job Board built with Laravel. This API enables busines
 
 -   **Framework:** Laravel 12
 -   **Language:** PHP 8.x
--   **Database:** MySQL
+-   **Database:** Inbuilt laravel sqlite
 -   **Authentication:** Laravel Sanctum
 -   **Version Control:** Git + GitHub
 
