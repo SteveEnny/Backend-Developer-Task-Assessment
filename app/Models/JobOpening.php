@@ -20,8 +20,8 @@ class JobOpening extends Model
 
     public function scopeFilter(Builder|QueryBuilder $query, $keyword): Builder|QueryBuilder
     {
-        return $query->when($keyword ?? null, function ($query, $q) {
-            $query->where('title', 'like', '%' . $q . '%');
+        return $query->when($keyword ?? null, function ($query, $keyword) {
+            $query->where('title', 'like', '%' . $keyword . '%')->orWhere('description', 'like', '%' . $keyword . '%');
         });
     }
 }
