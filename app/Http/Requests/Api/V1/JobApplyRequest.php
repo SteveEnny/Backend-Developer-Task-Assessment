@@ -25,7 +25,7 @@ class JobApplyRequest extends FormRequest
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'email' => ['required', 'string'],
-            'phone' => ['required', 'string'],
+            'phone' => ['required','digits_between:10,11'],
             'location' => ['required', 'string'],
             'cv' => ['required','file', 'mimes:pdf,doc,docx','max:2048'],
         ];
