@@ -9,10 +9,16 @@ trait ApiResponses
     }
     protected function success($message,$data, $statusCode = 200) {
         return response()->json([
-            'data' => $data,
+            'status' => 'success',
             'message' => $message,
-            'status' => $statusCode,
+            'data' => $data,
         ], $statusCode);
+    }
+    protected function successWithoutData($message) {
+        return response()->json([
+            'status' => 'success',
+            'message' => $message,
+        ], 200);
     }
     protected function error($message, $statusCode) {
         return response()->json([
