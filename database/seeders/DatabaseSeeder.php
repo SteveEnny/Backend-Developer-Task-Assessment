@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'business@example.com',
+            'avatar' => 'https:\/\/ui-avatars.com\/api\/?name=Hello"'
         ]);
 
         $this->call([
