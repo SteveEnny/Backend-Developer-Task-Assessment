@@ -10,20 +10,22 @@ use App\Traits\ApiResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
     use ApiResponses;
     public function register(RegisterUserRequest $request){
-        $user = User::Create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        $data = [
-            'token' => $user->createToken('API token for ' . $user->email, ['*'], now()->addMinutes($value = 60))->plainTextToken,
+        if($request->hasFile('avatar')){
+            $path = Storage::disk('public')->put('logos', $request->file('avatar'));
+            $url = asset($path);
+        }
+        $request_data = [
+            ...$request->validated(),
+            'avatar' => $url ?? 'https:\/\/ui-avatars.com\/api\/?name=Hello"' /// Add a defualt avater
         ];
-        return $this->ok('User created successfully', $data);
+        $user = User::Create($request_data);
+        return $this->ok('Business created successfully', $user);
     }
 
     public function Login(LoginUserRequest $request) {
@@ -42,5 +44,9 @@ class AuthController extends Controller
     public function Logout(Request $request) {
         $request->user()->currentAccessToken()->delete();
 
+    }
+
+    public function user(){
+        return $this->ok('User data', Auth::user());
     }
 }
