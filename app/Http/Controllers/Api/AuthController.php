@@ -22,7 +22,7 @@ class AuthController extends Controller
         }
         $request_data = [
             ...$request->validated(),
-            'avatar' => $url ?? 'https:\/\/ui-avatars.com\/api\/?name=Hello"' /// Add a defualt avater
+            'avatar' => $url ?? asset('storage/logos/avatar_image122.png') /// Add a defualt avater
         ];
         $user = User::Create($request_data);
         return $this->ok('Business created successfully', $user);
