@@ -13,6 +13,5 @@ Route::post('jobs/{id}/apply', [JobApplicationController::class, 'apply']);
 
 Route::middleware('auth:sanctum')->prefix('my')->group(function () {
     Route::apiResource('jobs', JobPostController::class);
-    // Route::patch('jobs/{id}', [JobPostController::class, 'update']);
     Route::get('jobs/{id}/applications', [JobApplicationController::class, 'jobApplications']);
 });
