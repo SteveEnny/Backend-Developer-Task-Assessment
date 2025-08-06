@@ -40,17 +40,19 @@ class JobApplicationController extends Controller
     public function apply(JobApplyRequest $request, string $job_id)
     {
         try{
-            $job = JobOpening::find($job_id);
+            JobOpening::findOrFail($job_id);
 
-            if(!$job){
-                throw new ModelNotFoundException('Invaid Job ID');
+            $isApplied = JobApplication::where([
+                'job_id' => $job_id,
+                'email' => $request->email,
+            ])->exists();
+
+            if ($isApplied) {
+                return $this->error('You have already applied for this job.', 200);
             }
 
-            if($request->hasFile('cv')){
-                $path = Storage::disk('public')->put('cvs', $request->file('cv'));
-                // $url = Storage::url($path);
-                $url = asset($path);
-            }
+            $path = Storage::disk('public')->put('cvs', $request->file('cv'));
+            $url = asset($path);
 
             $data = [
                 ...$request->validated(),
@@ -62,7 +64,7 @@ class JobApplicationController extends Controller
             return $this->successWithoutData('Application Successfully Submitted!');
         }
         catch(ModelNotFoundException $ex){
-            return $this->error($ex->getMessage(), 400);
+            return $this->error('Invalid Job ID', 404);
         }
     }
 
