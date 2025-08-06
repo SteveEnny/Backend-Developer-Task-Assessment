@@ -62,7 +62,7 @@ class JobPostController extends Controller
         catch(ModelNotFoundException $ex){
             return $this->error('Job not found', 400);
         }catch(AuthorizationException $ex) {
-            return $this->error('You are not authorized to update that resource', 401);
+            return $this->error('Job not found', 401);
         }
     }
 
