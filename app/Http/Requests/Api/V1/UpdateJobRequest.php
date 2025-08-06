@@ -22,9 +22,9 @@ class UpdateJobRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
+            'title' => ['sometimes', 'string'],
             'company' => ['sometimes', 'string'],
-            // 'company_logo' => ['file'],
+            'company_logo' => ['sometimes','image'],
             'location' => ['sometimes', 'string'],
             'category' => ['sometimes', 'string'],
             'salary' => ['sometimes', 'string'],
