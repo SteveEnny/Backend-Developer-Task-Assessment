@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'business@example.com',
-            'avatar' => 'https:\/\/ui-avatars.com\/api\/?name=Hello"'
+            'avatar' => asset('storage/logos/avatar_image122.png')
         ]);
 
         $this->call([
